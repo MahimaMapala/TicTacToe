@@ -7,20 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
-    <div class="status">Player X's Turn</div>
+    <h1>Tic Tac Toe</h1> 
     
-    <!-- Win Counters -->
-    <div class="scoreboard">
-        <p>Player X: <span id="scoreX">0</span> Wins</p>
-        <p>Player O: <span id="scoreO">0</span> Wins</p>
-    </div>
+    <div class="status">Player X's Turn</div>
 
     <div class="board" id="board"></div>
+    
+    <!-- Win Counters -->
+    <label class="switch">
+    <input type="checkbox" onchange="toggleTheme()">
+    <span class="slider"></span>
+    </label><br>
+
     <button class="reset" onclick="resetGame()">Restart Game</button>
     
+    
     <!-- Theme Toggle Button -->
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    
+      
+    <div class="scoreboard">
+        <p>Player X: <span id="scoreX">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Player O: <span id="scoreO">0</span> </p>
+    </div>
+
 
     <!-- Popup Modal -->
     <div class="popup" id="popup">
