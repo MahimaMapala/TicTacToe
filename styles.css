@@ -185,6 +185,23 @@ body.dark-mode .cell {
     transform: translateX(14px);
   }
 
+  /* Install button - Custom button added by script.js */
+button {
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
   
 /* Mobile responsiveness */
 @media (max-width: 400px) {

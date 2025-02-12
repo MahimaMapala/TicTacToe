@@ -12,6 +12,49 @@ let gameActive = true;
 let playerXWins = 0;  // Track Player X's wins
 let playerOWins = 0;  // Track Player O's wins
 
+let deferredPrompt;
+let installButton = document.createElement("button");
+installButton.innerText = "Install App";
+installButton.style.position = "absolute";
+installButton.style.bottom = "20px";
+installButton.style.right = "20px";
+installButton.style.padding = "10px 20px";
+installButton.style.backgroundColor = "#4CAF50";
+installButton.style.color = "white";
+installButton.style.border = "none";
+installButton.style.borderRadius = "5px";
+installButton.style.display = "none";  // Initially hidden
+
+document.body.appendChild(installButton);
+
+// Listen for the 'beforeinstallprompt' event
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent the default prompt
+    e.preventDefault();
+    // Save the event for later
+    deferredPrompt = e;
+    
+    // Show the install button
+    installButton.style.display = 'block';
+
+    // When the user clicks the install button, show the install prompt
+    installButton.addEventListener('click', () => {
+        // Show the install prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null; // Reset the prompt after the user has made a choice
+            installButton.style.display = 'none'; // Hide the install button
+        });
+    });
+});
+
+
 // Create Board
 function createBoard() {
     board.innerHTML = "";
