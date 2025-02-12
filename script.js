@@ -2,10 +2,15 @@ const board = document.getElementById("board");
 const statusText = document.querySelector(".status");
 const popup = document.getElementById("popup");
 const winnerMessage = document.getElementById("winnerMessage");
+const scoreX = document.getElementById("scoreX");
+const scoreO = document.getElementById("scoreO");
 
 let currentPlayer = "X";
 let gameBoard = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
+
+let playerXWins = 0;  // Track Player X's wins
+let playerOWins = 0;  // Track Player O's wins
 
 // Create Board
 function createBoard() {
@@ -27,7 +32,6 @@ function handleCellClick(event) {
 
     gameBoard[index] = currentPlayer;
     event.target.innerText = currentPlayer;
-    event.target.classList.add(currentPlayer); // Add the class to style X or O
     checkWinner();
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusText.innerText = `Player ${currentPlayer}'s Turn`;
@@ -45,6 +49,7 @@ function checkWinner() {
         const [a, b, c] = pattern;
         if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
             showPopup(`Player ${gameBoard[a]} Wins!`);
+            updateScore(gameBoard[a]);  // Update the score
             gameActive = false;
             return;
         }
@@ -53,6 +58,17 @@ function checkWinner() {
     if (!gameBoard.includes("")) {
         showPopup("It's a Draw!");
         gameActive = false;
+    }
+}
+
+// Update Score
+function updateScore(winner) {
+    if (winner === "X") {
+        playerXWins++;
+        scoreX.innerText = playerXWins;
+    } else if (winner === "O") {
+        playerOWins++;
+        scoreO.innerText = playerOWins;
     }
 }
 
@@ -75,6 +91,11 @@ function resetGame() {
     gameActive = true;
     statusText.innerText = `Player X's Turn`;
     createBoard();
+}
+
+// Toggle Theme (Dark/Light)
+function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
 }
 
 // Initialize Game

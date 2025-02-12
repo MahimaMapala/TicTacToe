@@ -1,22 +1,26 @@
-/* styles.css */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #2f2f2f;
+    color: #ffffff;
 }
 
 h1 {
     margin-bottom: 10px;
-    color: #333;
 }
 
 .status {
     font-size: 1.2em;
     margin-bottom: 15px;
     font-weight: bold;
-    color: #333;
 }
 
 .board {
@@ -40,19 +44,16 @@ h1 {
     border: 2px solid #333;
     cursor: pointer;
     user-select: none;
-    color: #333;
 }
 
 .cell:hover {
     background-color: #e0e0e0;
 }
 
-.cell.X {
-    color: #FF5733; /* X color - red */
-}
-
-.cell.O {
-    color: #33B5FF; /* O color - blue */
+body.dark-mode .cell {
+    background: #444;
+    border: 2px solid #888;
+    color: white;
 }
 
 .reset {
@@ -68,6 +69,22 @@ h1 {
 
 .reset:hover {
     background-color: #0056b3;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.theme-toggle:hover {
+    background-color: #218838;
 }
 
 /* Popup Styling */
@@ -109,6 +126,16 @@ h1 {
 
 .popup-content button:hover {
     background-color: #218838;
+}
+
+/* Scoreboard Styling */
+.scoreboard {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.scoreboard p {
+    font-weight: bold;
 }
 
 /* Mobile responsiveness */
